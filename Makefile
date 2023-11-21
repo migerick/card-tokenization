@@ -4,3 +4,7 @@ run:
 
 client:
 	npx tsx client.ts
+
+generate:
+	rm -rf ./gen
+	npx buf generate proto

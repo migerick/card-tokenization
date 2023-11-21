@@ -3,13 +3,11 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 interface TokenizationConfig {
-    host: string;
-    port: number;
-    debug: boolean;
-    mongoUrl: string;
-    mongoDatabase: string;
-    mysqlUrl: string;
-    secretKey: string;
+    host: string
+    port: number
+    debug: boolean
+    mongoUrl: string
+    mongoDatabase: string
 }
 
 const requiredEnvVariables = [
@@ -17,8 +15,6 @@ const requiredEnvVariables = [
     'CARD_PORT',
     'CARD_DEBUG',
     'CARD_MONGO_URL',
-    'CARD_MONGO_DATABASE',
-    'CARD_SECRET_KEY',
 ];
 
 const missingEnvVariables = requiredEnvVariables.filter((variable) => !(variable in process.env));
@@ -32,8 +28,6 @@ const tokenizationConfig: TokenizationConfig = {
     debug: process.env.CARD_DEBUG === "true",
     mongoUrl: process.env.CARD_MONGO_URL || 'mongodb://localhost:27017',
     mongoDatabase: process.env.CARD_MONGO_DATABASE || 'card',
-    mysqlUrl: process.env.CARD_MYSQL_URL || 'mysql://localhost:3306',
-    secretKey: process.env.CARD_SECRET_KEY || 'secret',
 };
 
 export default tokenizationConfig;

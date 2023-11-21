@@ -5,28 +5,43 @@ const cardSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
+        min: 13,
+        max: 16,
     },
     ccv: {
         type: String,
         required: true,
+        min: 3,
+        max: 4,
     },
-    expiryMonth: {
+    expirationMonth: {
         type: String,
         required: true,
+        min: 1,
+        max: 2,
     },
-    expiryYear: {
+    expirationYear: {
         type: String,
         required: true,
+        min: 4,
     },
     email: {
         type: String,
         required: true,
+        min: 5,
+        max: 100,
     },
-    type: {
+    token: {
         type: String,
         required: true,
-        enum: ['visa', 'mastercard', 'amex'],
-        default: 'visa',
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now(),
+    },
+    expiredAt: {
+        type: Date,
+        default: Date.now() + 15 * 60 * 1000,
     }
 });
 

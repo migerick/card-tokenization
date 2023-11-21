@@ -1,20 +1,18 @@
 version: '3.8'
 
 services:
-  mysqldb:
-    image: mysql
-    restart: always
-    environment:
-      - MYSQL_DATABASE=$MYSQL_DB_NAME
-      - MYSQL_USER=$MYSQL_USER
-      - MYSQL_PASSWORD=$MYSQL_PASSWORD
-      - MYSQL_ROOT_PASSWORD=$MYSQL_PASSWORD
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_container
     ports:
-      - "3306:${MYSQL_PORT}"
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${CARD_MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${CARD_MONGO_PASSWORD}
     volumes:
-      - ./mysqldb_data:/var/lib/mysql
+      - mongodb_data:/data/db
     env_file:
       - .env
 
 volumes:
-  mysqldb_volume:
+  mongodb_data:

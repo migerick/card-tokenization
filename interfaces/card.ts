@@ -2,7 +2,7 @@ interface ICard {
     id: string;
     cardNumber: string;
     ccv: string;
-    expiryMonth: string;
-    expiryYear: string;
+    expirationMonth: string;
+    expirationYear: string;
     email: string;
 }

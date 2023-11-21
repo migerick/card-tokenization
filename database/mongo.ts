@@ -1,9 +1,15 @@
-import {MongoClient} from 'mongodb';
+import mongoose from 'mongoose';
 import tokenizationConfig from '../config/config';
 
-const env = tokenizationConfig;
-const {mongoUrl} = env;
+export const connectDB = async (): Promise<void> => {
+    try {
+        const env = tokenizationConfig
+        await mongoose.connect(env.mongoUrl);
+        console.log('Connected to MongoDB');
+    } catch (error) {
+        console.error('Error connecting to MongoDB:', error);
+    }
+};
 
-const conMongo: MongoClient = new MongoClient(mongoUrl);
 
-export default conMongo;
+
