@@ -5,4 +5,5 @@ interface ICard {
     expirationMonth: string;
     expirationYear: string;
     email: string;
+    expiredAt: Date;
 }

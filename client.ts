@@ -1,13 +1,13 @@
 import {createPromiseClient} from "@connectrpc/connect";
-import {TokenService} from "./gen/token_connect";
 import {createConnectTransport} from "@connectrpc/connect-node";
+import {TokenService} from "./gen/token_connect";
 
 const transport = createConnectTransport({
     baseUrl: "http://localhost:8080",
     httpVersion: "1.1"
 });
 
-async function main() {
+async function tokens() {
     const client = createPromiseClient(TokenService, transport);
     try {
         const res = await client.tokens({
@@ -18,9 +18,24 @@ async function main() {
             expirationMonth: "09"
         });
         console.log(res);
-    }catch (e: any) {
+    } catch (e: any) {
         console.log(e.rawMessage);
     }
 }
 
-void main();
+async function charges() {
+    const headers = new Headers();
+    headers.set("Authorization", "N3JmQUNxMhZPiZTt");
+    const client = createPromiseClient(TokenService, transport);
+    try {
+        const res = await client.charges({}, {headers: headers});
+        console.log(res);
+    } catch (e: any) {
+        console.log(e.rawMessage);
+    }
+}
+
+
+// comment out the function you don't want to run
+void tokens();
+void charges();

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package token.v1;
+package connectrpc.token.v1;
 
 message TokenRequest {
   string email = 1;

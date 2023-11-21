@@ -8,3 +8,6 @@ client:
 generate:
 	rm -rf ./gen
 	npx buf generate proto
+
+mongo:
+	docker compose up -d

@@ -1,5 +1,5 @@
 import * as http from "http";
-import routes from "./routes/connect"
+import routes from "./connect/connect"
 import {connectNodeAdapter} from "@connectrpc/connect-node";
 import {cors as connectCors} from "@connectrpc/connect";
 import cors from "cors";
@@ -24,7 +24,8 @@ export function build() {
         });
 }
 
-connectDB()
+connectDB(env.mongoUrl)
 
 build().listen({host: env.host, port: env.port});
+
 console.log("Listening on ", env.host, env.port);
